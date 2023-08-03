@@ -13,6 +13,15 @@
   padding: 0px 45px;
 }
 
+.navbar a {
+  text-decoration: none;
+  color: black;
+}
+
+.navbar a:hover {
+  text-decoration: underline;
+  color: blue;
+}
 .site-logo {
   height: 80px;
 }
@@ -51,4 +60,14 @@
   font-size: 72px;
   width: 50%;
   color: rgb(206, 39, 39);
+}
+
+.about,
+.courses,
+.contact {
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid black;
 }
