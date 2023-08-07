@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Sort Example</title>
+</head>
+
+<body>
+    <ul id="nameList"></ul>
+
+    <script>
+        const names = ["Alice", "Bob", "Eve", "David", "Charlie"];
+        const sortedNames = names.sort();
+        const nameList = document.getElementById("nameList");
+
+        sortedNames.forEach(name => {
+            const listItem = document.createElement("li");
+            listItem.textContent = name;
+            nameList.appendChild(listItem);
+        });
+
+    </script>
+</body>
+
+</html>

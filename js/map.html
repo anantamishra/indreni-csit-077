@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Map Example</title>
+</head>
+
+<body>
+    <ul id="numberList"></ul>
+
+    <script>
+        const numbers = [1, 2, 3, 4, 5];
+        const squaredNumbers = numbers.map(num => num * num);
+        const numberList = document.getElementById("numberList");
+
+        squaredNumbers.forEach(squaredNum => {
+            const listItem = document.createElement("li");
+            listItem.textContent = squaredNum;
+            numberList.appendChild(listItem);
+        });
+
+    </script>
+</body>
+
+</html>

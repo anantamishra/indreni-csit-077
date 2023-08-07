@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Factorial Sequence</title>
+</head>
+
+<body>
+    <h1>Factorial Sequence</h1>
+    <label for="sequenceLength">Enter sequence length:</label>
+    <input type="number" id="sequenceLength">
+    <button id="generateButton">Generate Sequence</button>
+    <ul id="sequenceList"></ul>
+
+    <script>
+        function factorial(n) {
+            if (n === 0) {
+                return 1;
+            } else {
+                return n * factorial(n - 1);
+            }
+        }
+
+        document.getElementById("generateButton").addEventListener("click", function () {
+            var length = parseInt(document.getElementById("sequenceLength").value);
+
+            var sequence = Array.from({ length }, (_, index) => factorial(index));
+
+            var sequenceList = sequence.map(factorialValue => {
+                return `<li>${factorialValue}</li>`;
+            });
+
+            document.getElementById("sequenceList").innerHTML = sequenceList.join('');
+        });
+    </script>
+</body>
+
+</html>
