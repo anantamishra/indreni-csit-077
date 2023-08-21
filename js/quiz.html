@@ -4,23 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Quiz App</title>
 </head>
 
 <body>
-    <button onclick="quizFetch()"> Fetch Quiz</button>
-    <div>
-        <h1 id="question"></h1>
-        <ol type="A">
-            <li id="option1"></li>
-            <li id="option2"></li>
-            <li id="option3"></li>
-            <li id="option4"></li>
-        </ol>
-        <p>Correct Ans: <span id="correctAns"></span></p>
-    </div>
+    <button onclick="fetchQuiz()">Fetch Quiz</button>
+    <div id="quiz-container"></div>
     <script>
-        async function quizFetch() {
+        async function fetchQuiz() {
             const url = 'https://quiz26.p.rapidapi.com/questions';
             const options = {
                 method: 'GET',
@@ -33,26 +24,29 @@
             try {
                 const response = await fetch(url, options);
                 const quiz = await response.json();
-                // console.log(quiz);
-                const question = quiz[0].question;
-                document.getElementById("question").innerHTML = question;
-                const option1 = quiz[0].A;
-                document.getElementById("option1").innerHTML = option1;
-                const option2 = quiz[0].B;
-                document.getElementById("option2").innerHTML = option2;
-                const option3 = quiz[0].C;
-                document.getElementById("option3").innerHTML = option3;
-                const option4 = quiz[0].D;
-                document.getElementById("option4").innerHTML = option4;
-                const answer = quiz[0].answer;
-                document.getElementById("correctAns").innerHTML = answer;
-                console.log(question);
-                console.log(option1);
-                console.log(option2);
-                console.log(option3);
-                console.log(option4);
-                console.log(answer);
+                const quizContainer = document.getElementById("quiz-container");
 
+                for (let i = 0; i < 10; i++) {
+                    const quizDiv = document.createElement("div");
+                    quizDiv.classList.add("question");
+
+                    const question = quiz[i].question;
+                    const options = [quiz[i].A, quiz[i].B, quiz[i].C, quiz[i].D];
+                    const answer = quiz[i].answer;
+
+                    quizDiv.innerHTML = `
+                        <h1>Question ${i + 1}: ${question}</h1>
+                        <ol type="A">
+                            <li>${options[0]}</li>
+                            <li>${options[1]}</li>
+                            <li>${options[2]}</li>
+                            <li>${options[3]}</li>
+                        </ol>
+                        <p>Correct Ans: <span>${answer}</span></p>
+                    `;
+
+                    quizContainer.appendChild(quizDiv);
+                }
             } catch (error) {
                 console.error(error);
             }
